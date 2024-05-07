@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import MainScreen from "./screens/MainScreen";
+import {
+  DiaryScreen,
+  DetailScreen,
+  WriteItem,
+  ProductDetailScreen,
+} from "./components/index";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={{ title: "ProcketPet" }}
+        />
+        <Stack.Screen name="Diary" component={DiaryScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen
+          name="WriteItem"
+          component={WriteItem}
+          options={{ title: "다이어리 작성" }}
+        />
+        <Stack.Screen
+          name="ProductDetailScreen"
+          component={ProductDetailScreen}
+          options={{ title: "동물용품" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
